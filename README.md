@@ -1,10 +1,11 @@
-BSDPy 1.0
+BSDPy 1.1
 =========
 
 BSDPy is a platform-independent Apple NetBoot (BSDP) service for organizations
 that have a need for Apple Mac NetBoot functionality but that lack the ability
 to support OS X server in order to implement it.
 
+This is a fork that intends to add compatibility with older PowerPC macs.
  
 
 General Functionality
