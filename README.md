@@ -5,8 +5,18 @@ BSDPy is a platform-independent Apple NetBoot (BSDP) service for organizations
 that have a need for Apple Mac NetBoot functionality but that lack the ability
 to support OS X server in order to implement it.
 
+
 This is a fork that intends to add compatibility with older PowerPC macs.
- 
+
+## Changes
+
+Rewrote the BSDP packet options parser as it didn't work with my iMac G4
+
+## PowerPC testing
+
+Currently not compatibile with the MacOS 9.2 netboot image from Apple.
+OS X 10.5 and prior tested and seems to work fine.
+Linux is untested (for now)
 
 General Functionality
 ---------------------
