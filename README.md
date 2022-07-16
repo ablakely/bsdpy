@@ -9,15 +9,16 @@ to support OS X server in order to implement it.
 This is a fork that intends to add compatibility with older PowerPC macs
 (or other Open Firmware devices?)
 
-## Changes
-
-Rewrote the BSDP packet options parser as it didn't work with my iMac G4
-
 ## PowerPC testing
 
 Currently not compatibile with the MacOS 9.2 netboot image from Apple.
 OS X 10.5 and prior tested and seems to work fine.
 Linux is untested (for now)
+
+
+## Changes
+
+Rewrote the BSDP packet options parser as it didn't work with my iMac G4
 
 General Functionality
 ---------------------
@@ -33,7 +34,58 @@ BSDPy does not currently support the less frequently used diskless NetBoot mode
 which relies on a shadow disk image to be mounted from an AFP share. Shadowing
 using a RAM disk or local storage is fully supported.
 
- 
+Creating a .nbi from scratch
+----------------------------
+
+Netboot Images, or .nbi files, are directories which contain files that are needed
+to boot the remote systems, they also contain a .plist file which is read by the
+netboot server for image configuration.
+
+NBIs will contain a directory structure that looks like this
+
+### PowerPC
+
+    Tiger.nbi/
+    ├── booter                    # /usr/standalone/ppc/bootx.bootinfo
+    ├── mach.macosx               # /mach_kernel
+    ├── mach.macosx.mkext         # /System/Library/Extensions.mkext
+    ├── NBImageInfo.plist
+    └── tiger.dmg                 # OS Install Disk Image
+
+#### NBImageInfo.plist
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <!DOCTYPE plist SYSTEM "file://localhost/System/Library/DTDs/PropertyList.dtd">
+    <plist version="0.9">
+    <dict>
+        <key>BootFile</key>
+        <string>booter</string>
+        <key>IsEnabled</key>
+        <false/>
+        <key>Index</key>
+        <integer>4220</integer>
+        <key>IsInstall</key>
+        <true/>
+        <key>Name</key>
+        <string>Mac OS X Tiger Installer</string>
+        <key>RootPath</key>
+        <string>tiger.dmg</string>
+        <key>Type</key>
+        <string>HTTP</string>
+        <key>Description</key>
+        <string>OS X Tiger Installer</string>
+        <key>DisabledSystemIdentifiers</key>
+	    <array></array>
+        <key>EnabledSystemIdentifiers</key>
+        <array>
+          <string>PowerMac4,2</string>
+        </array>
+        <key>IsDefault</key>
+        <true/>
+    </dict>
+    </plist>
+
+For more information about NBIs, see [the bootpd man page](https://keith.github.io/xcode-man-pages/bootpd.8.html)
 
 Configuration
 -------------
