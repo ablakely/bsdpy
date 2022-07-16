@@ -6,7 +6,8 @@ that have a need for Apple Mac NetBoot functionality but that lack the ability
 to support OS X server in order to implement it.
 
 
-This is a fork that intends to add compatibility with older PowerPC macs.
+This is a fork that intends to add compatibility with older PowerPC macs
+(or other Open Firmware devices?)
 
 ## Changes
 
